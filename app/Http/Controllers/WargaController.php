@@ -3,74 +3,77 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Warga;
 
 class WargaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(){
-		$data['dataWarga'] = Warga::all();
-		return view('Guest.index',$data);
-}
-    /**
-     * Show the form for creating a new resource.
-     */
-   public function create(){
-		return view('Guest.form-warga');
-}
+    public function index()
+    {
+        $warga = Warga::all();
+        return view('Guest.warga.index', compact('warga'));
+    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function create()
+    {
+        return view('Guest.warga.create');
+    }
+
     public function store(Request $request)
     {
-        //dd($request->all())
+        $request->validate([
+            'no_ktp' => 'required|unique:warga,no_ktp',
+            'nama' => 'required|string|max:100',
+            'gender' => 'required|string',
+            'agama' => 'required|string',
+            'pekerjaan' => 'required|string',
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email',
+        ]);
 
-		$data['no_ktp'] = $request->first_name;
-		$data['nama'] = $request->last_name;
-		$data['jenis_kelamin'] = $request->birthday;
-		$data['agama'] = $request->gender;
-		$data['pekerjaan'] = $request->email;
-		$data['phone'] = $request->phone;
-        $data['email'] = $request->phone;
+        $data = [
+            'no_ktp' => $request->no_ktp,
+            'nama' => $request->nama,
+            'gender' => $request->gender,
+            'agama' => $request->agama,
+            'pekerjaan' => $request->pekerjaan,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ];
 
+        // ✅ Simpan data tanpa timestamps
+        Warga::create($data);
 
-		Warga::create($data);
-
-		return redirect()->route('Warga.index')->with('success','Penambahan Data Berhasil!');
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('warga.index')->with('success', 'Data warga berhasil disimpan!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $warga = Warga::findOrFail($id);
+        return view('Guest.warga.create', compact('warga'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $warga = Warga::findOrFail($id);
+
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'gender' => 'required|string',
+            'agama' => 'required|string',
+            'pekerjaan' => 'required|string',
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email',
+        ]);
+
+        $warga->update($request->all());
+
+        return redirect()->route('warga.index')->with('success', 'Data warga berhasil diperbarui!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $warga = Warga::findOrFail($id);
+        $warga->delete();
+        return redirect()->route('warga.index')->with('success', 'Data warga berhasil dihapus!');
     }
 }
