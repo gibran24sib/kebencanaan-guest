@@ -19,11 +19,9 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-```
 <!-- CSS Start -->
 @include('layouts.guest.css')
 <!-- CSS End -->
-```
 
 </head>
 
@@ -35,7 +33,6 @@
     </div>
     <!-- Spinner End -->
 
-```
 <!-- Topbar Start -->
 @include('layouts.guest.topbar')
 <!-- Topbar End -->
@@ -63,40 +60,7 @@
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="whatsapp-icon">
 </a>
 
-<style>
-    .floating-whatsapp {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 25px;
-        right: 25px;
-        background: linear-gradient(135deg, #2e7d32, #ffb300);
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: pulse 2s infinite;
-    }
 
-    .floating-whatsapp:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .whatsapp-icon {
-        width: 35px;
-        height: 35px;
-        margin-top: 12px;
-    }
-
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
-        70% { box-shadow: 0 0 0 15px rgba(46, 125, 50, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
-    }
-</style>
 
 <!-- JavaScript Libraries -->
 @include('layouts.guest.js')

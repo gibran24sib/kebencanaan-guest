@@ -15,7 +15,7 @@ class PoskoBencanaController extends Controller
     {
         $data['posko'] = PoskoBencana::all();
         // View path disesuaikan: resources/views/Guest/posko/index-posko.blade.php
-        return view('Guest.posko.index-posko', $data);
+        return view('pages.posko.index-posko', $data);
     }
 
     /**
@@ -24,7 +24,7 @@ class PoskoBencanaController extends Controller
     public function create()
     {
         // View path disesuaikan: resources/views/Guest/posko/form-posko.blade.php
-        return view('Guest.posko.form-posko');
+        return view('pages.posko.form-posko');
     }
 
     /**
@@ -56,7 +56,7 @@ class PoskoBencanaController extends Controller
     public function edit($id)
     {
         $posko = PoskoBencana::findOrFail($id);
-        return view('Guest.posko.form-posko', compact('posko'));
+        return view('pages.posko.form-posko', compact('posko'));
     }
 
     /**

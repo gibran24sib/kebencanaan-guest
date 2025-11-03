@@ -9,6 +9,6 @@ class DashboardController extends Controller
     public function index()
     {
         // Menampilkan view dashboard dari folder Guest
-        return view('Guest.dashboard');
+        return view('pages.main.dashboard');
     }
 }

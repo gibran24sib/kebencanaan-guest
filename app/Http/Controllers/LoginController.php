@@ -12,7 +12,7 @@ class LoginController extends Controller
     // 🟢 Tampilkan form login
     public function index()
     {
-        return view('Guest.user.login');
+        return view('pages.user.login');
     }
 
     // 🟢 Proses login
@@ -35,7 +35,7 @@ class LoginController extends Controller
         Auth::login($user);
 
         // ✅ Arahkan langsung ke dashboard view (bukan route)
-        return view('Guest.dashboard')->with('success', 'Login berhasil!');
+        return view('pages.dashboard')->with('success', 'Login berhasil!');
     }
 
     // 🟢 Logout user

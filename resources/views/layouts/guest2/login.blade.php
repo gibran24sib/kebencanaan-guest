@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Login</title>
-    <!-- Bootstrap CSS -->
+    <title>@yield('title', 'Login')</title>
+
+    {{-- Bootstrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    {{-- Bootstrap Icons --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    {{-- Custom CSS --}}
     <style>
         body {
             background: linear-gradient(135deg, #ffb6c1, #f4a8ce, #ffc0cb);
@@ -84,62 +90,19 @@
         }
     </style>
 </head>
+
 <body>
-
     <div class="login-card">
-        <h3>💖 Login Akun Guest 💖</h3>
+        {{-- Konten Halaman --}}
+        @yield('content')
 
-        {{-- Pesan Error --}}
-        @if ($errors->any())
-            <div class="error-box">
-                <ul class="m-0 ps-3">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        {{-- Form Login --}}
-        <form action="{{ url('/guest/auth') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="username" class="form-label text-pink">Username</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    name="username"
-                    placeholder="Masukkan username"
-                    value="{{ old('username') }}"
-                    required>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label text-pink">Password</label>
-                <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    placeholder="Masukkan password"
-                    required>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100 mt-2">✨ Masuk ✨</button>
-        </form>
-
+        {{-- Footer --}}
         <p class="footer">
-            © {{ date('Y') }} <b>Sistem Login Lucu</b> — by Kamu 💕
+            © {{ date('Y') }} <b>Sistem Login Lucu</b> — by Kamu <i class="bi bi-heart-fill text-danger"></i>
         </p>
     </div>
 
-    <!-- Bootstrap JS -->
+    {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
-
-
