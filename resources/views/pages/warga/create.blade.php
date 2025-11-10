@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Dashboard Posko</title>
+    <title>Data Warga - Dashboard Posko</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,108 +19,128 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .login-box {
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 400px;
-            padding: 2.5rem 2rem;
-            animation: fadeIn 0.6s ease-in-out;
+        .container {
+            padding: 30px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h3 {
-            text-align: center;
-            color: #2e7d32;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            font-weight: 500;
-            color: #388e3c;
-        }
-
-        .form-control {
+        .btn {
+            font-size: 16px;
             border-radius: 10px;
-            border: 1px solid #c8e6c9;
-        }
-
-        .form-control:focus {
-            border-color: #66bb6a;
-            box-shadow: 0 0 8px rgba(102, 187, 106, 0.3);
+            transition: transform 0.3s ease;
         }
 
         .btn-success {
             background: linear-gradient(90deg, #43a047, #66bb6a);
             border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
         }
 
-        .btn-success:hover {
-            background: linear-gradient(90deg, #388e3c, #81c784);
+        .btn-warning {
+            background: #f39c12;
+            border: none;
+        }
+
+        .btn:hover {
             transform: translateY(-2px);
         }
 
-        .footer-text {
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .card img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #27ae60;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #27ae60, #f39c12);
+            color: white;
+            font-weight: bold;
+        }
+
+        .card-footer {
             text-align: center;
             color: #4e4e4e;
-            font-size: 0.9rem;
-            margin-top: 1.5rem;
+        }
+
+        .badge {
+            font-size: 12px;
+            margin: 0 5px;
+        }
+
+        .text-muted {
+            color: #757575;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tag-container .badge {
+            margin: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
-
 <body>
-    <div class="login-box">
-        <div class="text-center mb-3">
-            <h3><i class="bi bi-box-arrow-in-right"></i> Login</h3>
-        </div>
 
-        {{-- Pesan Error --}}
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="m-0 ps-3">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        {{-- Form Login --}}
-        <form action="{{ url('/auth/login') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="email" class="form-label"><i class="bi bi-envelope-fill"></i> Email</label>
-                <input type="email" class="form-control" id="email" name="email"
-                       placeholder="Masukkan email" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label"><i class="bi bi-lock-fill"></i> Password</label>
-                <input type="password" class="form-control" id="password" name="password"
-                       placeholder="Masukkan password" required>
-            </div>
-
-            <button type="submit" class="btn btn-success w-100 mt-2">
-                <i class="bi bi-box-arrow-in-right"></i> Login
-            </button>
-        </form>
-
-        <p class="footer-text mt-4">
-            © {{ date('Y') }} <b>Dashboard Posko</b>. Semua hak dilindungi.
-        </p>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a href="{{ route('dashboard.index') }}" class="btn btn-success fw-bold">
+            <i class="bi bi-arrow-left-circle"></i> Kembali
+        </a>
+        <a href="{{ route('warga.create') }}" class="btn btn-warning text-white fw-bold">
+            <i class="bi bi-plus-circle"></i> Tambah Data
+        </a>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="row g-4">
+        @forelse ($warga as $item)
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm text-center p-3 h-100">
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode($item->nama) }}&background=27ae60&color=fff"
+                         alt="{{ $item->nama }}" class="rounded-circle mx-auto mb-3"
+                         width="100" height="100">
+                    <h5 class="fw-semibold mb-0">{{ $item->nama }}</h5>
+                    <p class="text-muted mb-1 small">{{ $item->pekerjaan }}</p>
+                    <span class="badge bg-success">{{ $item->agama }}</span>
+
+                    <!-- Tag Section -->
+                    <div class="tag-container">
+                        <span class="badge bg-info">{{ $item->gender }}</span>
+                        <span class="badge bg-primary">{{ $item->phone }}</span>
+                        <span class="badge bg-secondary">{{ $item->email }}</span>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="text-center text-muted py-5">
+                <i class="bi bi-info-circle"></i> Belum ada data warga.
+            </div>
+        @endforelse
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
