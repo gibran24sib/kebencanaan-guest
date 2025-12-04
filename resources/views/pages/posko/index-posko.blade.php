@@ -17,6 +17,40 @@
             </h4>
         </div>
 
+        <!-- SEARCH & FILTER -->
+        <form method="GET" action="{{ route('posko.index') }}" class="row mb-4">
+
+            <div class="col-md-4">
+                <input type="text" name="search" class="form-control"
+                       placeholder="Cari nama posko / alamat / kontak / PJ..."
+                       value="{{ request('search') }}">
+            </div>
+
+            <div class="col-md-4">
+                <select name="kejadian_id" class="form-control">
+                    <option value="">-- Semua Kejadian --</option>
+                    @foreach($kejadian as $k)
+                        <option value="{{ $k->kejadian_id }}"
+                            {{ request('kejadian_id') == $k->kejadian_id ? 'selected' : '' }}>
+                            {{ $k->nama_kejadian }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100">
+                    <i class="bi bi-search"></i> Cari
+                </button>
+            </div>
+
+            <div class="col-md-2">
+                <a href="{{ route('posko.index') }}" class="btn btn-danger w-100">
+                    <i class="bi bi-x-circle"></i> Reset
+                </a>
+            </div>
+        </form>
+
         <div class="row">
             @foreach ($posko as $p)
                 <div class="col-md-4 mb-4">
@@ -45,5 +79,11 @@
                 </div>
             @endforeach
         </div>
+
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-center mt-3">
+            {{ $posko->links() }}
+        </div>
+
     </div>
 @endsection

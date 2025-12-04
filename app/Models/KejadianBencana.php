@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class KejadianBencana extends Model
 {
-    //
     protected $table = 'kejadian_bencana';
     protected $primaryKey = 'kejadian_id';
 
@@ -20,4 +19,9 @@ class KejadianBencana extends Model
         'status_kejadian',
         'keterangan',
     ];
+
+    public function donasi()
+    {
+        return $this->hasMany(DonasiBencana::class, 'kejadian_id', 'kejadian_id');
+    }
 }

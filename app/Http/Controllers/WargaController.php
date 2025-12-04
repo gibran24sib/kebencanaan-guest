@@ -7,9 +7,32 @@ use App\Models\Warga;
 
 class WargaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $warga = Warga::all();
+        $query = Warga::query();
+
+        // 🔍 Search
+        if ($request->search) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nama', 'LIKE', '%'.$request->search.'%')
+                  ->orWhere('no_ktp', 'LIKE', '%'.$request->search.'%')
+                  ->orWhere('pekerjaan', 'LIKE', '%'.$request->search.'%');
+            });
+        }
+
+        // 🧩 Filter Gender
+        if ($request->gender) {
+            $query->where('gender', $request->gender);
+        }
+
+        // 🧩 Filter Agama
+        if ($request->agama) {
+            $query->where('agama', $request->agama);
+        }
+
+        // 📌 Pagination
+        $warga = $query->paginate(8);
+
         return view('pages.warga.index', compact('warga'));
     }
 
@@ -40,7 +63,6 @@ class WargaController extends Controller
             'email' => $request->email,
         ];
 
-        // ✅ Simpan data tanpa timestamps
         Warga::create($data);
 
         return redirect()->route('warga.index')->with('success', 'Data warga berhasil disimpan!');

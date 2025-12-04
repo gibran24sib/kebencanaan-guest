@@ -10,12 +10,39 @@ use Illuminate\Support\Facades\Storage;
 class PoskoBencanaController extends Controller
 {
     /**
-     * Tampilkan semua data posko beserta data kejadiannya
+     * Tampilkan semua data posko + Pagination + Search + Filter
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil posko + relasi kejadian
-        $data['posko'] = PoskoBencana::with('kejadian')->get();
+        $search = $request->search;
+        $kejadianFilter = $request->kejadian_id;
+
+        $query = PoskoBencana::with('kejadian');
+
+        // FILTER berdasarkan kejadian
+        if (!empty($kejadianFilter)) {
+            $query->where('kejadian_id', $kejadianFilter);
+        }
+
+        // SEARCH
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', '%' . $search . '%')
+                  ->orWhere('alamat', 'like', '%' . $search . '%')
+                  ->orWhere('kontak', 'like', '%' . $search . '%')
+                  ->orWhere('penanggung_jawab', 'like', '%' . $search . '%');
+            });
+        }
+
+        // PAGINATION — tampilkan 9 data per halaman
+        $data['posko'] = $query->paginate(9)->withQueryString();
+
+        // Data dropdown kejadian
+        $data['kejadian'] = KejadianBencana::all();
+
+        // Untuk form tetap terisi
+        $data['search'] = $search;
+        $data['kejadianFilter'] = $kejadianFilter;
 
         return view('pages.posko.index-posko', $data);
     }
@@ -25,9 +52,7 @@ class PoskoBencanaController extends Controller
      */
     public function create()
     {
-        // Ambil semua kejadian untuk dropdown
         $kejadian = KejadianBencana::all();
-
         return view('pages.posko.form-posko', compact('kejadian'));
     }
 
@@ -45,7 +70,6 @@ class PoskoBencanaController extends Controller
             'foto'              => 'nullable|image|max:2048',
         ]);
 
-        // Upload foto
         if ($request->hasFile('foto')) {
             $validated['foto'] = $request->file('foto')->store('foto_posko', 'public');
         }
@@ -82,10 +106,7 @@ class PoskoBencanaController extends Controller
             'foto'              => 'nullable|image|max:2048',
         ]);
 
-        // Jika upload foto baru
         if ($request->hasFile('foto')) {
-
-            // Hapus foto lama
             if ($posko->foto && Storage::disk('public')->exists($posko->foto)) {
                 Storage::disk('public')->delete($posko->foto);
             }
@@ -105,7 +126,6 @@ class PoskoBencanaController extends Controller
     {
         $posko = PoskoBencana::findOrFail($id);
 
-        // Hapus foto jika ada
         if ($posko->foto && Storage::disk('public')->exists($posko->foto)) {
             Storage::disk('public')->delete($posko->foto);
         }

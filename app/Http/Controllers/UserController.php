@@ -8,9 +8,24 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $query = User::query();
+
+        // SEARCH (nama & email)
+        if ($request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%')
+                  ->orWhere('email', 'like', '%' . $request->search . '%');
+        }
+
+        // FILTER role (jika kolom "role" ada)
+        if ($request->role) {
+            $query->where('role', $request->role);
+        }
+
+        // PAGINATION 8 user per halaman
+        $users = $query->paginate(8)->withQueryString();
+
         return view('pages.user.index-user', compact('users'));
     }
 
@@ -51,7 +66,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
         ];
 
-        // Password hanya diupdate jika diisi
         if ($request->filled('password')) {
             $rules['password'] = 'confirmed|min:6';
         }

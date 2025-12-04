@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posko_bencana', function (Blueprint $table) {
-            $table->id('posko_id'); // Jika ingin konsisten, boleh pakai id custom
+            $table->id('posko_id');
             $table->unsignedBigInteger('kejadian_id')->nullable()->comment('Relasi ke tabel kejadian');
             $table->string('nama', 100);
             $table->text('alamat');
@@ -26,9 +26,8 @@ return new class extends Migration
                 ->references('kejadian_id')
                 ->on('kejadian_bencana')
                 ->onUpdate('cascade')
-                  ->onDelete('cascade');
+                ->onDelete('cascade');
         });
-
     }
 
     /**
