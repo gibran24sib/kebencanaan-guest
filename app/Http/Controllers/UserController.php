@@ -18,7 +18,7 @@ class UserController extends Controller
                   ->orWhere('email', 'like', '%' . $request->search . '%');
         }
 
-        // FILTER role (jika kolom "role" ada)
+        // FILTER role (admin/user)
         if ($request->role) {
             $query->where('role', $request->role);
         }
@@ -37,15 +37,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users,email',
+            'name'     => 'required|string|max:100',
+            'email'    => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
+
+            // ➕ TAMBAHAN VALIDASI ROLE
+            'role'     => 'required|in:admin,user',
         ]);
 
         User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => Hash::make($request->password),
+
+            // ➕ TAMBAHAN SIMPAN ROLE
+            'role'     => $request->role,
         ]);
 
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan!');
@@ -62,8 +68,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $rules = [
-            'name' => 'required|string|max:100',
+            'name'  => 'required|string|max:100',
             'email' => 'required|email|unique:users,email,' . $id,
+
+            // ➕ TAMBAHAN VALIDASI ROLE
+            'role'  => 'required|in:admin,user',
         ];
 
         if ($request->filled('password')) {
@@ -72,7 +81,8 @@ class UserController extends Controller
 
         $request->validate($rules);
 
-        $data = $request->only(['name', 'email']);
+        $data = $request->only(['name', 'email', 'role']);
+        // role otomatis ikut karena kita tambahkan di sini
 
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);

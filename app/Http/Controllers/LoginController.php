@@ -35,7 +35,7 @@ class LoginController extends Controller
         Auth::login($user);
 
         // ✅ Arahkan langsung ke dashboard view (bukan route)
-        return view('pages.dashboard')->with('success', 'Login berhasil!');
+        return view('pages.main.dashboard')->with('success', 'Login berhasil!');
     }
 
     // 🟢 Logout user
