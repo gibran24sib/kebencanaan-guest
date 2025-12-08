@@ -1,11 +1,15 @@
 <!-- Topbar Start -->
 <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
     <div class="row align-items-center h-100">
-        <div class="col-lg-4 text-center text-lg-start">
-            <a href="index.html">
-                <h1 class="display-5 text-primary m-0">Kebencanaan</h1>
+        <!-- Kolom untuk Logo dan Teks -->
+        <div class="col-lg-4 text-center text-lg-start d-flex align-items-center">
+            <!-- Logo -->
+            <a href="index.html" class="me-3">
+                <img src="{{ asset('assets-guest/img/logobinadesa.png') }}" alt="Logo" style="height: 60px; ">
             </a>
         </div>
+
+        <!-- Kolom untuk Kontak -->
         <div class="col-lg-8 d-none d-lg-block">
             <div class="row">
                 <div class="col-lg-4">

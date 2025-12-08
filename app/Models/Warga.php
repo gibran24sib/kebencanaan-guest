@@ -22,6 +22,6 @@ class Warga extends Model
         'email'
     ];
 
-    // 🚫 Tambahkan baris ini biar Laravel tidak menulis ke created_at dan updated_at
+   
     public $timestamps = false;
 }
