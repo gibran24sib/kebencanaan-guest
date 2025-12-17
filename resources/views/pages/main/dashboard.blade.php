@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="carousel-img">
-                            <img class="w-100" src="{{ asset('assets-guest/img/carousel-1.jpg') }}" alt="Image">
+                            <img class="w-100" src="{{ asset('assets-guest/img/gambar1.jpg') }}" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="carousel-img">
-                            <img class="w-100" src="{{ asset('assets-guest/img/carousel-2.jpg') }}" alt="Image">
+                            <img class="w-100" src="{{ asset('assets-guest/img/gambar2.jpg') }}" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <img class="img-fluid w-100" src="{{asset('assets-guest/img/about.jpg')}}" alt="Image">
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6">s
                     <p class="section-title bg-white text-start text-primary pe-3">About Us</p>
                     <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">Join Hands, Change the World</h1>
                     <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">Every hand extended in kindness brings us closer

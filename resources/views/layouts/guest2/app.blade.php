@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +11,22 @@
 
     <style>
         body {
-            background: linear-gradient(to bottom right, #6dd34d, #f6a31b);
+            background: linear-gradient(to bottom right, #0d1b2a, #e0e1dd);
             min-height: 100vh;
         }
+
         .navbar {
-            background: linear-gradient(90deg, #43a047, #fb8c00);
+            background: linear-gradient(90deg, #0d1b2a, #415a77);
         }
-        .navbar-brand, .nav-link {
+
+        .navbar-brand,
+        .nav-link {
             color: white !important;
             font-weight: 600;
         }
+
         .footer {
-            background: #2e7d32;
+            background: #1b263b;
             color: white;
             text-align: center;
             padding: 10px;
@@ -30,6 +35,7 @@
         }
     </style>
 </head>
+
 <body>
     {{-- Header --}}
     @include('layouts.guest2.header')
@@ -44,4 +50,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -15,7 +15,7 @@
     {{-- Custom CSS --}}
     <style>
         body {
-            background: linear-gradient(135deg, #ffb6c1, #f4a8ce, #ffc0cb);
+            background: linear-gradient(135deg, #0d1b2a, #415a77, #e0e1dd);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -24,40 +24,47 @@
         }
 
         .login-card {
-            background: #fff;
+            background: #ffffff;
             border-radius: 20px;
-            box-shadow: 0px 8px 30px rgba(255, 105, 180, 0.3);
+            box-shadow: 0px 8px 30px rgba(13, 27, 42, 0.25);
             width: 100%;
             max-width: 400px;
             padding: 2rem;
             animation: fadeIn 0.6s ease-in-out;
-            border: 2px solid #ffe6f0;
+            border: 2px solid #e0e1dd;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h3 {
             font-weight: 700;
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #ff4da6;
+            color: #0d1b2a;
         }
 
         .form-control {
             border-radius: 10px;
-            border: 1px solid #ffcce0;
+            border: 1px solid #cfd4da;
         }
 
         .form-control:focus {
-            box-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
-            border-color: #ff66b2;
+            box-shadow: 0 0 8px rgba(65, 90, 119, 0.5);
+            border-color: #415a77;
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, #ff66b2, #ff99cc);
+            background: linear-gradient(90deg, #0d1b2a, #415a77);
             border: none;
             border-radius: 10px;
             font-weight: 600;
@@ -65,28 +72,28 @@
         }
 
         .btn-primary:hover {
-            background: linear-gradient(90deg, #ff80bf, #ffb6c1);
+            background: linear-gradient(90deg, #1b263b, #778da9);
             transform: translateY(-2px);
         }
 
         .error-box {
-            background-color: #ffe6eb;
-            color: #b30059;
+            background-color: #e0e1dd;
+            color: #0d1b2a;
             padding: 10px;
             border-radius: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ff99cc;
+            border: 1px solid #778da9;
         }
 
         p.footer {
             text-align: center;
-            color: #b30059;
+            color: #415a77;
             font-size: 0.9rem;
             margin-top: 1rem;
         }
 
         p.footer b {
-            color: #ff4da6;
+            color: #0d1b2a;
         }
     </style>
 </head>
@@ -105,4 +112,5 @@
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

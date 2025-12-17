@@ -5,7 +5,7 @@
         <div class="col-lg-4 text-center text-lg-start d-flex align-items-center">
             <!-- Logo -->
             <a href="index.html" class="me-3">
-                <img src="{{ asset('assets-guest/img/logobinadesa.png') }}" alt="Logo" style="height: 60px; ">
+                <img src="{{ asset('assets-guest/img/logo.jpg') }}" alt="Logo" style="height: 60px; ">
             </a>
         </div>
 
@@ -19,7 +19,7 @@
                         </div>
                         <div class="ms-2">
                             <h6 class="text-primary mb-0">Call Us</h6>
-                            <span class="text-white">+6282155572005</span>
+                            <span class="text-white">082176587870</span>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="ms-2">
                             <h6 class="text-primary mb-0">Mail Us</h6>
-                            <span class="text-white">difa24si@mahasiswa.pcr.ac.id</span>
+                            <span class="text-white">gibran24si@mahasiswa.pcr.ac.id</span>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="ms-2">
                             <h6 class="text-primary mb-0">Address</h6>
-                            <span class="text-white">RowoSari,Rumbai,Pekanbaru</span>
+                            <span class="text-white">Umban Sari Atas,Rumbai,Pekanbaru</span>
                         </div>
                     </div>
                 </div>
