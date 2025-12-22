@@ -105,7 +105,7 @@
 
         {{-- Footer --}}
         <p class="footer">
-            © {{ date('Y') }} <b>Sistem Login Lucu</b> — by Kamu <i class="bi bi-heart-fill text-danger"></i>
+            © {{ date('Y') }} <b>Sistem Login</b> — by Kamu <i class="bi bi-heart-fill text-danger"></i>
         </p>
     </div>
 

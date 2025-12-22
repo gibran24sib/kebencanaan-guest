@@ -5,7 +5,7 @@
         <div class="col-lg-4 text-center text-lg-start d-flex align-items-center">
             <!-- Logo -->
             <a href="index.html" class="me-3">
-                <img src="{{ asset('assets-guest/img/logo.jpg') }}" alt="Logo" style="height: 60px; ">
+                <img src="{{ asset('assets-guest/img/logosigana.jpeg') }}" alt="Logo" style="height: 60px; ">
             </a>
         </div>
 
