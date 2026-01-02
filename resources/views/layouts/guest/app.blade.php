@@ -8,6 +8,9 @@
 
     {{-- CSS --}}
     @include('layouts.guest.css')
+
+    {{-- CSS khusus halaman (contoh: logistik, datatable, dll) --}}
+    @stack('styles')
 </head>
 
 <body>
@@ -26,7 +29,9 @@
     @include('layouts.guest.navbar')
 
     {{-- MAIN CONTENT --}}
-    @yield('content')
+    <main class="container-fluid py-4">
+        @yield('content')
+    </main>
 
     {{-- Footer --}}
     @include('layouts.guest.footer')
@@ -45,6 +50,9 @@
 
     {{-- JS --}}
     @include('layouts.guest.js')
+
+    {{-- JS khusus halaman (contoh: logistik, datatable, dll) --}}
+    @stack('scripts')
 
 </body>
 </html>

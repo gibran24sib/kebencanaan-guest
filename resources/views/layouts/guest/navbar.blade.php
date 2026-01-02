@@ -7,7 +7,8 @@
             <h4 class="d-lg-none m-0 text-white">Menu</h4>
 
             <!-- Toggle -->
-            <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -23,18 +24,24 @@
                     </a>
 
                     <a href="{{ url('warga') }}"
-                        class="nav-item nav-link {{ request()->is('warga') ? 'active' : '' }}">
+                        class="nav-item nav-link {{ request()->is('warga*') ? 'active' : '' }}">
                         Data Warga
                     </a>
 
                     <a href="{{ url('posko') }}"
-                        class="nav-item nav-link {{ request()->is('posko') ? 'active' : '' }}">
+                        class="nav-item nav-link {{ request()->is('posko*') ? 'active' : '' }}">
                         Posko
                     </a>
 
                     <a href="{{ url('kejadian') }}"
-                        class="nav-item nav-link {{ request()->is('kejadian') ? 'active' : '' }}">
+                        class="nav-item nav-link {{ request()->is('kejadian*') ? 'active' : '' }}">
                         Kejadian
+                    </a>
+
+                    <!-- 🔥 MENU LOGISTIK -->
+                    <a href="{{ url('logistik') }}"
+                        class="nav-item nav-link {{ request()->is('logistik*') ? 'active' : '' }}">
+                        Logistik
                     </a>
 
                     <a href="{{ url('donasi') }}"
@@ -43,28 +50,26 @@
                     </a>
 
                     <a href="{{ route('user.index') }}"
-                        class="nav-item nav-link {{ request()->is('user') ? 'active' : '' }}">
+                        class="nav-item nav-link {{ request()->is('user*') ? 'active' : '' }}">
                         Data User
                     </a>
 
                     <a href="{{ route('tentang.index') }}"
-                        class="nav-item nav-link {{ request()->is('tentang') ? 'active' : '' }}">
+                        class="nav-item nav-link {{ request()->is('tentang*') ? 'active' : '' }}">
                         Tentang
                     </a>
                 </div>
 
                 <!-- RIGHT PANEL -->
-                <!-- RIGHT PANEL -->
                 <div class="d-none d-lg-flex ms-auto align-items-center">
 
-                    <!-- 👇 Tetap ditampilkan, tapi BUKAN flash message -->
                     <p class="text-white mb-0 me-3">Anda berhasil login!</p>
 
                     <a class="btn btn-square btn-dark ms-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-square btn-dark ms-2" href="#"><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-square btn-dark ms-2" href="#"><i class="fab fa-youtube"></i></a>
 
-                    <!-- 🔥 Tombol LOGOUT -->
+                    <!-- LOGOUT -->
                     <form action="{{ route('logout') }}" method="POST" class="ms-2">
                         @csrf
                         <button class="btn btn-square btn-danger" type="submit">
