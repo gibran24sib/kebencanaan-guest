@@ -13,6 +13,7 @@ use App\Http\Controllers\Guest\TentangController;
 use App\Http\Controllers\KejadianBencanaController;
 use App\Http\Controllers\LogistikBencanaController;
 use App\Http\Controllers\Guest\KebencanaanController;
+use App\Http\Controllers\DistribusiLogistikController;
 
 // ------------------------
 // Guest / Public routes
@@ -66,3 +67,13 @@ Route::get('/donasi/detail/{id}', [DonasiController::class, 'detail'])
 
     Route::get('/logistik', [LogistikBencanaController::class, 'pageIndex'])
     ->name('logistik.index');
+
+    Route::prefix('distribusi')->name('distribusi.')->group(function () {
+    Route::get('/', [DistribusiLogistikController::class, 'index'])->name('index');
+    Route::get('/create', [DistribusiLogistikController::class, 'create'])->name('create');
+    Route::post('/', [DistribusiLogistikController::class, 'store'])->name('store');
+    Route::get('/{id}', [DistribusiLogistikController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [DistribusiLogistikController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [DistribusiLogistikController::class, 'update'])->name('update');
+    Route::delete('/{id}', [DistribusiLogistikController::class, 'destroy'])->name('destroy');
+});

@@ -38,10 +38,16 @@
                         Kejadian
                     </a>
 
-                    <!-- 🔥 MENU LOGISTIK -->
+                    <!-- MENU LOGISTIK -->
                     <a href="{{ url('logistik') }}"
                         class="nav-item nav-link {{ request()->is('logistik*') ? 'active' : '' }}">
                         Logistik
+                    </a>
+
+                    <!-- MENU DISTRIBUSI (FINAL) -->
+                    <a href="{{ route('distribusi.index') }}"
+                        class="nav-item nav-link {{ request()->is('distribusi*') ? 'active' : '' }}">
+                        Distribusi
                     </a>
 
                     <a href="{{ url('donasi') }}"
