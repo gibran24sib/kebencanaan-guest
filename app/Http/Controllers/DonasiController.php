@@ -13,7 +13,6 @@ class DonasiController extends Controller
     // ==============================
     public function index()
     {
-        // Eager loading relasi kejadian
         $donasi = DonasiBencana::with('kejadian')->get();
 
         return view('pages.donasi.index', compact('donasi'));

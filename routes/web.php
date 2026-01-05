@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PoskoBencanaController;
 use App\Http\Controllers\Guest\TentangController;
 use App\Http\Controllers\KejadianBencanaController;
+use App\Http\Controllers\LogistikBencanaController;
 use App\Http\Controllers\Guest\KebencanaanController;
 
 // ------------------------
@@ -45,8 +46,7 @@ Route::resource('posko', PoskoBencanaController::class);
 
 Route::group(['middleware' => ['checkrole:admin']], function () {
 
-    Route::resource('user', UserController::class);
-});
+Route::resource('user', UserController::class);});
 
 Route::resource('login', LoginController::class)->only(['index', 'store', 'destroy']);
 Route::post('/logout', [LoginController::class, 'destroy'])
@@ -63,3 +63,6 @@ Route::resource('donasi', DonasiController::class);
 // Tambahkan route detail manual
 Route::get('/donasi/detail/{id}', [DonasiController::class, 'detail'])
     ->name('donasi.detail');
+
+    Route::get('/logistik', [LogistikBencanaController::class, 'pageIndex'])
+    ->name('logistik.index');

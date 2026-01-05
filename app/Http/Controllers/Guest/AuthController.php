@@ -13,16 +13,16 @@ class AuthController extends Controller
         return view('guest.login-form');
     }
 
-    // Memproses form login
+
     public function login(Request $request)
     {
-        // 🔸 Validasi input
+
         $validated = $request->validate([
             'username' => 'required',
             'password' => [
                 'required',
                 'min:3',
-                'regex:/[A-Z]/' // harus ada huruf kapital
+                'regex:/[A-Z]/'
             ],
         ], [
             'username.required' => 'Username wajib diisi.',
@@ -31,9 +31,8 @@ class AuthController extends Controller
             'password.regex' => 'Password harus mengandung huruf kapital.',
         ]);
 
-        // 🔸 Logika jika username dan password sama
+
         if ($request->username === $request->password) {
-            // Jika benar, arahkan ke halaman berhasil
             return view('guest.berhasil', [
                 'username' => $request->username
             ]);
